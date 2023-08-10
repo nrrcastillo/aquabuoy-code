@@ -2,6 +2,8 @@ import numpy as np
 
 """
 hydrodynamic data from wamit for 1 period 
+- T array was inputted into wamit 
+- F, a, b were outputs
 """
 
 ## Wave period, initially just test for one period

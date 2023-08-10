@@ -1,11 +1,5 @@
 from _collections_abc import Callable, Iterable
 from abc import ABC, abstractmethod
-from testdata import (
-    T_data as wave_period,
-    F_data as wave_ef,
-    a_data as added_mass,
-    b_data as hydro_damping,
-)
 
 import numpy as np
 import scipy as sp
@@ -19,7 +13,11 @@ TODO:
 """
 
 
-class WaveData:
+class HD:
+    """
+    NOTE: Planning to remove this class once NEMOH code is integrated
+    """
+
     def __init__(
         self, T: np.ndarray, F: np.ndarray, a: np.ndarray, b: np.ndarray
     ) -> None:
@@ -29,13 +27,20 @@ class WaveData:
         self.b = b
 
 
-class DEParams(WaveData):
+"""
+Likely do need to inherit from HD class
+    - PM spectrum needs interpolated data from HD
+"""
+
+
+class WaveParameters:
     def __init__(
         self,
         regular: bool,
         linear: bool,
-        avg_wave_height: float,
+        avg_wave_height: float,  #
         avg_wave_period: float,
+        fluid_fric_coef: float,
     ) -> None:
         """
         Args:
@@ -43,13 +48,18 @@ class DEParams(WaveData):
             linear (bool): True if linear waves, False if nonlinear waves
             avg_wave_height (float): average wave height
             avg_wave_period (float): average wave period
+            fluid_fric_coef (float): fluid friction coefficient. used to compute Fff parameter in DE
         """
         self.regular = regular
         self.linear = linear
         self.avg_wave_height = avg_wave_height  # if regular, this is the wave height. If irregular, this is the significant wave height
         self.avg_wave_period = avg_wave_period
-        self.peak_wave_period = self.avg_wave_period * 1.4
+        self.fluid_fric_coef = fluid_fric_coef  # Cd
+
+        ### Non-initalised parameters ###
+        self.peak_wave_period = self.avg_wave_period * 1.4  # Tp
         self.peak_wave_freq = 1 / self.peak_wave_period
+        ### PM spectrum parameters ###
         self.A = (5 / 16) * (self.avg_wave_height**2) * (self.peak_wave_freq**4)
         self.B = (5 / 4) * (self.peak_wave_freq**2)
         self.fi = (
@@ -63,10 +73,6 @@ class DEParams(WaveData):
             2 * self.Sf * self.fi * 0.01
         )  # wave amplitude of each component
         # self.Fwt = np.sum(self.ai * np.sin(2 * np.pi * self.fi * t))
-        self.T_data = None
-        self.F_data = None
-        self.a_data = None
-        self.b_data = None
 
 
 """
