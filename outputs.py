@@ -12,29 +12,28 @@ from matplotlib import pyplot as plt
 # equivalent to matlab ode45 in scipy (for non-stiff equations)
 ## sp.integrate.RK45(f, t0, y0, t_bound, max_step=0.1)
 
-eps = TypeVar('eps', List[List[int]])
+eps = TypeVar("eps", List[List[int]])
 
-def plot_data(
-        ys: np.array,
-        save: bool = False
-        ) -> None:
+
+def plot_data(ys: np.array, save: bool = False) -> None:
     plt.plot(ys)
     if save:
+        pass
 
-    
 
 def figs_to_eps(
-        fig: plt.figimage, # output of matplotlib plot
-        path: str,
-        fname: str = function.__name__
-        ) -> eps:
-    pass    
+    fig: plt.figimage,  # output of matplotlib plot
+    path: str,
+    fname: str = function.__name__,
+) -> eps:
+    pass
+
 
 def summary_to_csv(
-        df: pd.DataFrame, # potentially change this to dict
-        path: str, 
-        filename: str = "output"
-        ) -> csv:
+    df: pd.DataFrame,  # potentially change this to dict
+    path: str,
+    filename: str = "output",
+) -> csv:
     """
     _summary_
 
@@ -46,18 +45,15 @@ def summary_to_csv(
     Returns:
         csv: on specified path, function will output dataframe as "filename.csv"
         TODO: find other way to default name
-        
+
         csv output format:
         - numerical scheme used
         - duration of operation--tentatively use time.timeit()
         - accuracy (?)
-        - annotations: (use of Cython/Numba to optimise speed)
     """
-    
+
     pass
 
-
-def 
 
 def plot_functions(**kwargs):
     ax, fig = plt.subplot()
@@ -66,5 +62,3 @@ def plot_functions(**kwargs):
     plt.savefig("output.eps", format="eps")
     plt.show()
     return fig
-
-# TODO: define 4 x n matrix for ODE system y = [v1, v2, z1, z2]
