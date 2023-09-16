@@ -72,7 +72,6 @@ state_test_rl = wp.WaveParameters(
         linear=True,
         avg_wave_height=2.5,
         avg_wave_period=7,
-        fluid_fric_coef=1.0,
         drag_coef=3.0, # used in Fff(t)
         damping_coef=250000,
     )
