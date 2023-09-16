@@ -8,6 +8,10 @@ description = "Python port of the original MATLAB code for the Aquabuoy project"
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools.packages.find]
-where = ["aquabuoy"]
+[tool.setuptools]
+packages = find:
+
+[options.packages.find]
+exclude = "tests"
+
 
