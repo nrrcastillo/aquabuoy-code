@@ -1,20 +1,13 @@
+[project]
+name = "aquabuoy-code"
+version = "0.0.1"
+description = "Python port of the original MATLAB code for the Aquabuoy project"
+
 [build-system]
 
 requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
 
-[metadata]
+[tool.setuptools.packages.find]
+where = ["aquabuoy"]
 
-name = aquabuoy-code
-description=Python port for the original MATLAB code used in the Aquabuoy project
-url=https://github.com/nrrcastillo/aquabuoy-code
-author=Nicolas Castillo
-author_email=ncastillo@seattleu.edu
-
-
-version = 0.0.1
-
-[options]
-packages = find:
-
-[options.packages.find]
-where=aquabuoy
