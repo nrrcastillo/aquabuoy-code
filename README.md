@@ -8,10 +8,9 @@ This repository contains the Python port of the original MATLAB code for numeric
 
 ## Getting Started
 
-### Installation
+### Requirements
 
-Clone the source of this library: `git clone`
-Install
+Download `fpg.py`, `rhsfuncs.py`, `waveparams.py`, `rhs_utils.py`, `testdata.py` from the `Aquabuoy` folder in this repository. If one wishes to use their own hydrodynamic data, then `testdata.py` is not needed.
 
 ### Executing program
 
@@ -19,10 +18,11 @@ Install
 
 ``` python
 
-import aquabuoy.fpg as fpg
-import aquabuoy.waveparams as wp
-import aquabuoy.rhsfuncs as rhs
-import aquabuoy.rhs_utils as _rhs
+import fpg
+import waveparams as wp
+import rhsfuncs as rhs
+import rhs_utils as _rhs
+from testdata import *
 
 ```
 
@@ -45,7 +45,7 @@ test_device = fpg.FloatParameters(
     
 ```
 
-* Input corresponding hydrodynamic data for device.
+* Input corresponding hydrodynamic data for device. If using own hydrodynamic data, input as `np.array`.
 
 ``` python
 
